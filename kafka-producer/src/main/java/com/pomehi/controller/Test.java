@@ -1,6 +1,6 @@
-package com.pomehi.kafkaproducer.controller;
+package com.pomehi.controller;
 
-import com.pomehi.kafkaproducer.kafka.MyKafkaProd;
+import com.pomehi.kafka.MyKafkaProd;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

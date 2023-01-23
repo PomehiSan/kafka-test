@@ -1,16 +1,16 @@
-package com.pomehi.kafkaproducer.config;
+package com.pomehi.config;
 
-import org.apache.kafka.common.protocol.types.Field;
+import com.pomehi.dto.Cat;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 @Configuration
 public class MyConf {
@@ -20,16 +20,17 @@ public class MyConf {
         KafkaProperties prop = new KafkaProperties();
         KafkaProperties.Producer producer = prop.getProducer();
         producer.setBootstrapServers(List.of("localhost:9092"));
+        producer.setValueSerializer(JsonSerializer.class);
         return producer.buildProperties();
     }
 
     @Bean
-    public ProducerFactory<String, String> getProducerFactory() {
+    public ProducerFactory<String, Cat> getProducerFactory() {
         return new DefaultKafkaProducerFactory<>(getPropertyFromKafka());
     }
 
     @Bean
-    public KafkaTemplate<String, String> getKafka() {
+    public KafkaTemplate<String, Cat> getKafka() {
         return new KafkaTemplate<>(getProducerFactory());
     }
 }
