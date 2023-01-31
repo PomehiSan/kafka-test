@@ -2,6 +2,7 @@ package com.pomehi.config;
 
 import com.pomehi.dto.Cat;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-public class MyConf {
+public class KafkaConfig {
+
+    @Value("${spring.kafka.consumer.bootstrap-servers}")
+    private String kafkaIP;
 
     public JsonDeserializer getJsonDeserializer() {
         JsonDeserializer jsonDeserializer = new JsonDeserializer<>();
@@ -25,7 +29,7 @@ public class MyConf {
     public Map<String, Object> getPropertyFromKafka() {
         KafkaProperties prop = new KafkaProperties();
         KafkaProperties.Consumer consumer = prop.getConsumer();
-        consumer.setBootstrapServers(List.of("localhost:9092"));
+        consumer.setBootstrapServers(List.of(kafkaIP));
         consumer.setValueDeserializer(JsonDeserializer.class);
         consumer.setGroupId("1");
         return consumer.buildProperties();

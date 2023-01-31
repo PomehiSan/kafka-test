@@ -9,6 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/eureka-server" />
+            <option value="$PROJECT_DIR$/kafka-consumer" />
+            <option value="$PROJECT_DIR$/kafka-producer" />
           </set>
         </option>
       </GradleProjectSettings>

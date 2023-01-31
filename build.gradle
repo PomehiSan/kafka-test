@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'com.google.cloud.tools.jib' version '3.3.1'
 }
 
 group 'com.pomehi.pet'
 version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()

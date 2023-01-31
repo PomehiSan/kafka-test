@@ -37,3 +37,34 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+  server:
+    image: eureka-server
+    container_name: server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - consumer
+      - producer
+
+  consumer:
+    image: kafka-consumer
+    container_name: consumer
+    ports:
+      - "8070:8070"
+    depends_on:
+      - broker
+    environment:
+      EUREKA_INSTANCE_HOSTNAME: server
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP-SERVERS: broker:29092
+
+  producer:
+    image: kafka-producer
+    container_name: producer
+    ports:
+      - "8071:8071"
+    depends_on:
+      - broker
+    environment:
+      EUREKA_INSTANCE_HOSTNAME: server
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP-SERVERS: broker:29092

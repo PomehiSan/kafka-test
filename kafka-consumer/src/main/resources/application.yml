@@ -3,8 +3,4 @@ spring:
     name: kafka-consumer
 
 server:
-  port: ${PORT:0}
-
-eureka:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  port: ${PORT:8070}

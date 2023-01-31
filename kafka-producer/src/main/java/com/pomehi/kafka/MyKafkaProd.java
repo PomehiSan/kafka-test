@@ -7,6 +7,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -27,8 +28,8 @@ public class MyKafkaProd {
                         .name("Мышка")
                         .build())
                 .build();
-        CompletableFuture<SendResult<String, Cat>> loh = kafkaTemplate.send("loh", cat);
-        loh.thenAccept(action -> {
+        ListenableFuture<SendResult<String, Cat>> loh = kafkaTemplate.send("loh", cat);
+        loh.completable().thenAccept(action -> {
             ProducerRecord<String, Cat> pr = action.getProducerRecord();
             RecordMetadata rm = action.getRecordMetadata();
             StringBuilder sb = new StringBuilder();

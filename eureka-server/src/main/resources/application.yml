@@ -15,11 +15,5 @@ eureka:
     prefer-same-zone-eureka: true
     healthcheck:
       enabled: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
   server:
     expected-client-renewal-interval-seconds: 20
-
-  instance:
-    hostname: my-eureka-server.com
-    lease-expiration-duration-in-seconds: 70

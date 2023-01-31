@@ -1,20 +1,20 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.1'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '2.7.7'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'com.google.cloud.tools.jib' version '3.3.1'
 }
 
 group = 'com.pomehi'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
-    maven { url 'https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates' }
 }
 
 ext {
-    set('springCloudVersion', "2022.0.0")
+    set('springCloudVersion', "2021.0.5")
 }
 
 dependencies {
@@ -35,4 +35,15 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+jib {
+    to {
+        image = 'kafka-consumer'
+        version = '1.1.1'
+    }
+    container {
+        jvmFlags = ['-Dspring.profiles.active=prod']
+        ports = ['8070']
+    }
 }
