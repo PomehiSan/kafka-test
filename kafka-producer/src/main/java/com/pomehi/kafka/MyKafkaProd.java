@@ -16,7 +16,6 @@ public class MyKafkaProd {
 
     KafkaTemplate<String, Cat> kafkaTemplate;
 
-
     public MyKafkaProd(KafkaTemplate<String, Cat> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
