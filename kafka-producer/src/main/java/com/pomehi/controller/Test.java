@@ -9,11 +9,10 @@ public class Test {
 
     MyKafkaProd myKafkaProd;
 
-
-
     public Test(MyKafkaProd myKafkaProd) {
         this.myKafkaProd = myKafkaProd;
     }
+
 
     @GetMapping("/test")
     public void test() {
