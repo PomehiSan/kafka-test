@@ -21,6 +21,7 @@ public class MyKafkaProd {
     }
 
     public void sendMessage(String message) {
+
         Cat cat = Cat.builder()
                 .name("Микаса")
                 .age(2)
