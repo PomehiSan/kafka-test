@@ -13,7 +13,6 @@ public class Test {
         this.myKafkaProd = myKafkaProd;
     }
 
-
     @GetMapping("/test")
     public void test() {
         myKafkaProd.sendMessage("Тебе сообщение лох");
