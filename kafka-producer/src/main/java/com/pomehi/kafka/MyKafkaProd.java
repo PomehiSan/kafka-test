@@ -16,10 +16,10 @@ public class MyKafkaProd {
 
     KafkaTemplate<String, Cat> kafkaTemplate;
 
-
     public MyKafkaProd(KafkaTemplate<String, Cat> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
+
 
     public void sendMessage(String message) {
         Cat cat = Cat.builder()
