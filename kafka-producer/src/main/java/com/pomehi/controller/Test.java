@@ -9,6 +9,8 @@ public class Test {
 
     MyKafkaProd myKafkaProd;
 
+
+
     public Test(MyKafkaProd myKafkaProd) {
         this.myKafkaProd = myKafkaProd;
     }
