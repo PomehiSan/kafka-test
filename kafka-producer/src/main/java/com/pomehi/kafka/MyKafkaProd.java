@@ -19,8 +19,6 @@ public class MyKafkaProd {
     public MyKafkaProd(KafkaTemplate<String, Cat> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
-
-
     public void sendMessage(String message) {
         Cat cat = Cat.builder()
                 .name("Микаса")
